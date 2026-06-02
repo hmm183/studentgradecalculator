@@ -33,6 +33,7 @@ const startServer = async () => {
 
     // Fixed routes: OAuth on /auth, user auth on /api/user
     app.use("/auth", otpRoutes);
+    app.use(process.env.CRON_ROUTE || "/api/cron", require("./routes/cronRoutes"));
     app.use("/api/user", require("./routes/authRoutes"));
 
     app.use("/api/courses", require("./routes/courseRoutes"));
