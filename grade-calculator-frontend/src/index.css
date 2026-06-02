@@ -1,0 +1,399 @@
+/* VARIABLES: The Tangy Palette */
+:root {
+  --bg-cream: #fffef0;    /* Vintage Paper Background */
+  --tangy-orange: #ff9f43; /* Main Action */
+  --comic-blue: #0abde3;   /* Secondary Action */
+  --dark-ink: #222f3e;     /* Text & Borders */
+  --pure-white: #ffffff;
+  --alert-red: #ff6b6b;
+  --soft-grey: #c8d6e5;
+  
+  --border-thick: 2px solid var(--dark-ink);
+  --shadow-hard: 4px 4px 0px var(--dark-ink);
+  --shadow-hover: 2px 2px 0px var(--dark-ink);
+  --radius: 4px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace; /* Monospace adds to the retro/comic feel */
+  font-family: 'Verdana', sans-serif; /* Fallback for readability */
+  background-color: var(--bg-cream);
+  color: var(--dark-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout Wrappers --- */
+.tangy-wrapper {
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.tangy-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- The Retro Card --- */
+.retro-card {
+  background: var(--pure-white);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  transition: transform 0.1s;
+}
+
+.small-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.card-header-strip {
+  background-color: var(--tangy-orange);
+  color: var(--dark-ink);
+  padding: 12px 20px;
+  border-bottom: var(--border-thick);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card-header-strip.color-alt {
+  background-color: var(--comic-blue);
+}
+
+.card-header-strip.color-dark {
+  background-color: var(--dark-ink);
+  color: var(--pure-white);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* --- Typography --- */
+h2, h3 {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  color: var(--dark-ink);
+}
+
+.highlight {
+  background-color: var(--tangy-orange);
+  padding: 0 10px;
+}
+
+.highlight-bg {
+  background-color: var(--comic-blue);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.retro-subtitle {
+  font-style: italic;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.student-id-display {
+  background: #eee;
+  padding: 10px;
+  border: 1px dashed var(--dark-ink);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* --- Inputs & Forms --- */
+.retro-input, .retro-textarea, .retro-select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: var(--border-thick);
+  border-radius: var(--radius);
+  background: var(--bg-cream);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.retro-input:focus, .retro-textarea:focus, .retro-select:focus {
+  background: var(--pure-white);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.full-width { width: 100%; grid-column: span 2; }
+
+@media(max-width: 600px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .full-width { grid-column: span 1; }
+}
+
+.divider-dashed {
+  border-bottom: 2px dashed var(--dark-ink);
+  margin: 20px 0;
+}
+
+/* --- Checkboxes --- */
+.checkbox-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.retro-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.retro-checkbox input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--tangy-orange);
+  border: 2px solid black;
+}
+
+/* --- Buttons --- */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn-retro-primary {
+  background-color: var(--tangy-orange);
+  border: var(--border-thick);
+  color: var(--dark-ink);
+  padding: 15px;
+  box-shadow: var(--shadow-hard);
+  transition: all 0.1s;
+}
+
+.btn-retro-primary:active {
+  box-shadow: 0px 0px 0px;
+  transform: translate(4px, 4px);
+}
+
+.btn-retro-secondary {
+  background-color: var(--pure-white);
+  border: var(--border-thick);
+  padding: 10px 20px;
+  box-shadow: var(--shadow-hard);
+}
+
+.btn-retro-secondary:hover {
+  background-color: var(--bg-cream);
+}
+
+.btn-retro-danger {
+  background-color: var(--alert-red);
+  color: white;
+  border: var(--border-thick);
+  padding: 10px 30px;
+  box-shadow: var(--shadow-hard);
+}
+
+/* --- Dashboard Tiles --- */
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.btn-tile {
+  padding: 2rem;
+  background: var(--pure-white);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.btn-tile:hover {
+  background: var(--comic-blue);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--dark-ink);
+}
+
+.admin-tile {
+  background-color: var(--soft-grey);
+}
+
+/* --- Tables --- */
+.table-wrapper { overflow-x: auto; }
+.retro-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.retro-table th {
+  border: var(--border-thick);
+  padding: 12px;
+  background: var(--dark-ink);
+  color: white;
+}
+
+.retro-table td {
+  border: var(--border-thick);
+  padding: 12px;
+  font-weight: 500;
+}
+
+.retro-table tr:hover td {
+  background-color: #fff8e1; /* Light yellow highlight */
+}
+
+.retro-badge {
+  background: var(--dark-ink);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.retro-badge.lg {
+  font-size: 1.2rem;
+  background: var(--tangy-orange);
+  color: black;
+  border: 2px solid black;
+}
+
+/* --- Grading Key --- */
+.grade-key-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px dashed var(--dark-ink);
+}
+
+.key-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.key-item {
+  border: 1px solid var(--dark-ink);
+  padding: 5px 10px;
+  background: white;
+  border-radius: 4px;
+}
+
+.key-grade {
+  font-weight: 800;
+  color: var(--tangy-orange);
+  margin-right: 8px;
+}
+
+/* --- Grid for Admin Panel --- */
+.retro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.slot-pill {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 0.8em;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .tangy-wrapper {
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-retro-primary, .btn-retro-secondary, .btn-retro-danger {
+    min-height: 44px;
+    font-size: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .retro-card {
+    margin-bottom: 1rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .retro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .retro-table {
+    font-size: 0.9rem;
+  }
+
+  .retro-table th, .retro-table td {
+    padding: 8px;
+  }
+
+  .mini-table {
+    font-size: 0.8rem;
+  }
+
+  .retro-table {
+    min-width: unset;
+  }
+}
