@@ -55,4 +55,23 @@ router.post("/slot", verifyAdminPassword, async (req, res) => {
   res.json({ message: "Slot added" });
 });
 
+router.get("/feedback", async (req, res) => {
+  try {
+    const users = await User.find({ "feedback.0": { $exists: true } }, "email feedback");
+    const feedbacks = [];
+    users.forEach(user => {
+      user.feedback.forEach(item => {
+        feedbacks.push({
+          email: user.email,
+          feedback: item,
+        });
+      });
+    });
+    res.json({ feedbacks });
+  } catch (err) {
+    console.error("Error fetching feedback:", err);
+    res.status(500).json({ message: "Server error while fetching feedback" });
+  }
+});
+
 module.exports = router;

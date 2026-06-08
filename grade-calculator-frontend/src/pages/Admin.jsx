@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
 
@@ -15,12 +15,27 @@ function Admin() {
     slotName: "",
     faculties: "",
   });
-  const [users, setUsers] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [passwordModal, setPasswordModal] = useState({
     isOpen: false,
     actionType: "", // "course" or "slot"
     password: "",
   });
+
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const res = await API.get("/admin/feedback");
+        setFeedbacks(res.data.feedbacks || []);
+      } catch (err) {
+        console.error("Failed to fetch feedback:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFeedback();
+  }, []);
 
   const handleCourseChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -169,6 +184,38 @@ function Admin() {
               <button className="btn-retro-primary full-width" onClick={addSlot}>
                 Add Slot
               </button>
+            </div>
+          </div>
+
+          {/* Panel 3: Feedback */}
+          <div className="retro-card" style={{ gridColumn: "1 / -1" }}>
+            <div className="card-header-strip color-dark">USER FEEDBACK</div>
+            <div className="card-body">
+              {loading ? (
+                <p className="retro-text">Loading feedback...</p>
+              ) : feedbacks.length === 0 ? (
+                <p className="retro-text">No feedback received yet.</p>
+              ) : (
+                <div style={{ maxHeight: "300px", overflowY: "auto", paddingRight: "10px" }}>
+                  {feedbacks.map((fb, idx) => (
+                    <div 
+                      key={idx} 
+                      style={{ 
+                        borderBottom: idx === feedbacks.length - 1 ? "none" : "2px dashed var(--dark-ink)", 
+                        paddingBottom: "15px", 
+                        marginBottom: "15px" 
+                      }}
+                    >
+                      <span className="retro-badge" style={{ marginBottom: "8px", display: "inline-block" }}>
+                        {fb.email}
+                      </span>
+                      <p style={{ margin: 0, fontSize: "0.95rem", lineHeight: "1.4", whiteSpace: "pre-wrap" }}>
+                        {fb.feedback}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
