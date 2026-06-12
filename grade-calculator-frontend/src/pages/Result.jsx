@@ -199,6 +199,11 @@ function Result() {
               <>
                 {summary && (
                   <div className="summary-section">
+                    {summary.totalStudents < 25 && (
+                      <div className="retro-warning-banner">
+                        ⚠️ Warning: If the strength is less than 25, the grade calculation is not accurate.
+                      </div>
+                    )}
                     <h3>Summary</h3>
                     <p><strong>Total Students:</strong> {summary.totalStudents}</p>
                     <p><strong>Faculty:</strong> {summary.faculty}</p>

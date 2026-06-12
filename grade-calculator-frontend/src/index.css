@@ -285,6 +285,19 @@ button {
   border: 2px solid black;
 }
 
+
+.retro-warning-banner {
+  background-color: #ffeaa7; /* Soft yellow warning background */
+  border: var(--border-thick);
+  color: var(--dark-ink);
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  box-shadow: 2px 2px 0px var(--dark-ink);
+  font-size: 0.9rem;
+}
+
 /* --- Grading Key --- */
 .grade-key-section {
   margin-top: 2rem;

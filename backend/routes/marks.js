@@ -272,7 +272,7 @@ router.get("/user-results", auth, async (req, res) => {
       slot: groups[key].slot,
       faculty: groups[key].faculty
     });
-    if (groupRecords.length < 10) {
+    if (groupRecords.length < 7) {
       const userRecord = groupRecords.find(r => r.studentEmail === userEmail);
       pendingGroups.push({ ...groups[key], userCount: groupRecords.length, total: userRecord ? userRecord.finalTotal : null });
     } else {

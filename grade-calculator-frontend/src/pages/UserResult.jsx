@@ -65,12 +65,18 @@ function UserResult() {
                       {group.entries.map((r, index) => (
                         <tr key={index}>
                           <td>{r.pending ? (r.total ? r.total.toFixed(2) : "Result is pending") : r.total.toFixed(2)}</td>
-                          <td>{r.pending ? "Result is pending(min 10 students needed)" : <span className="retro-badge lg">{r.grade}</span>}</td>
+                          <td>{r.pending ? "Result is pending(min 7 students needed)" : <span className="retro-badge lg">{r.grade}</span>}</td>
                           <td>{r.userCount}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
+
+                  {group.entries.some(r => r.userCount < 25) && (
+                    <div className="retro-warning-banner" style={{ marginTop: "1.5rem", marginBottom: "0rem" }}>
+                      ⚠️ Warning: If the strength is less than 25, the grade calculation is not accurate.
+                    </div>
+                  )}
 
                   {group.gradeRanges && Object.keys(group.gradeRanges).length > 0 && (
                     <div className="grade-key-section">
